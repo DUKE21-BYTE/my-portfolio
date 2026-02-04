@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How I Built My First Responsive Website | Dennis Fundi</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .blog-page {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+        .blog-article {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(var(--glass-blur));
+        }
+        .article-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+        .article-tag {
+            display: inline-block;
+            background: rgba(20, 184, 166, 0.1);
+            color: var(--accent-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .article-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .article-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .article-body {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+        .article-body h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .article-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #0f172a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 2rem 0;
+            color: #e2e8f0;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-article { padding: 1.5rem; }
+        }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-glow"></div>
+
+    <!-- Nav (Simplified) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Dennis<span class="highlight">.</span></a>
+            <a href="index.html#blog" class="back-link" style="margin: 0;">&larr; Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <section class="blog-page">
+        <div class="container">
+            <article class="blog-article fade-in">
+                <header class="article-header">
+                    <span class="article-tag">Web Development</span>
+                    <h1 class="article-title">How I Built My First Responsive Website</h1>
+                    <div class="article-meta">
+                        <span><i class="fa-regular fa-calendar"></i> January 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 3 min read</span>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>
+                        When I first started coding, I thought making a website was just about putting boxes on a screen. 
+                        I positioned everything perfectly on my laptop, felt like a genius, and then opened it on my phone. 
+                        <strong>Disaster.</strong> Text was overflowing, images were huge, and I had to scroll horizontally just to read a sentence.
+                    </p>
+                    
+                    <h2>The "Pixels are Fixed" Trap</h2>
+                    <p>
+                        My biggest mistake was using fixed units like `px` for everything. I would write:
+                    </p>
+                    <div class="code-block">
+.container {
+    width: 1200px; /* Big mistake! */
+    margin: 0 auto;
+}
+                    </div>
+                    <p>
+                        This forced the browser to trying to fit 1200 pixels onto a phone screen that was only 375 pixels wide.
+                        The fix was shifting my mindset to <strong>relative units</strong>. Instead of pixels, I learned to love percentages (`%`), viewport units (`vw/vh`), and `rem`.
+                    </p>
+
+                    <h2>Discovering Flexbox</h2>
+                    <p>
+                        Before Flexbox, I was trying to use `float: left` to stack things next to each other. It was a nightmare of clearing floats and broken layouts.
+                        Flexbox changed everything. Suddenly, centering a `div` wasn't rocket science anymore:
+                    </p>
+                    <div class="code-block">
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* The holy grail */
+}
+                    </div>
+
+                    <h2>The Magic of Media Queries</h2>
+                    <p>
+                        The final piece of the puzzle was media queries. This is where you tell CSS, "Hey, if the screen is smaller than a tablet, do this instead."
+                    </p>
+                    <div class="code-block">
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Hide regular menu on mobile */
+    }
+    .grid {
+        grid-template-columns: 1fr; /* Stack into one column */
+    }
+}
+                    </div>
+                    
+                    <h2>Conclusion</h2>
+                    <p>
+                        Building responsive sites isn't just about code; it's about <strong>empathy</strong> for the user. 
+                        Whether they are on a massive desktop or a budget smartphone, the experience should be seamless. 
+                        That's the standard I now hold for every project I build, including this portfolio.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Dennis Fundi Kamau. Built with care.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

