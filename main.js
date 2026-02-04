@@ -85,15 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   // Add visible class styling dynamically or in CSS
-  // Let's add the style via JS for simplicity if not in CSS
-  const styleSheet = document.createElement("style");
-  styleSheet.innerText = `
-        .visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-  document.head.appendChild(styleSheet);
+  // Moved to style.css
 
   // Cursor Glow Effect
   const cursorGlow = document.querySelector(".cursor-glow");
@@ -101,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("mousemove", (e) => {
       const x = e.clientX;
       const y = e.clientY;
-      cursorGlow.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(59, 130, 246, 0.15), transparent 40%)`;
+      cursorGlow.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(45, 212, 191, 0.15), transparent 40%)`;
     });
   }
 });

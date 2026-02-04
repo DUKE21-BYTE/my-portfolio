@@ -962,3 +962,9 @@ h1, h2, h3, h4 {
     font-size: 2rem;
   }
 }
+
+/* Animation state */
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
