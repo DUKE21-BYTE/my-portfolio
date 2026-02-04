@@ -96,4 +96,24 @@ document.addEventListener("DOMContentLoaded", () => {
       cursorGlow.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(45, 212, 191, 0.15), transparent 40%)`;
     });
   }
+
+  // Privacy/Cookie Banner Logic
+  const privacyBanner = document.getElementById("privacy-banner");
+  const acceptPrivacyBtn = document.getElementById("accept-privacy");
+
+  // Check if user has already accepted
+  if (!localStorage.getItem("privacyAccepted")) {
+    setTimeout(() => {
+      privacyBanner.classList.add("show");
+    }, 2000); // Show after 2 seconds
+  }
+
+  if (acceptPrivacyBtn) {
+    acceptPrivacyBtn.addEventListener("click", () => {
+      // Save to Local Storage
+      localStorage.setItem("privacyAccepted", "true");
+      // Hide Banner
+      privacyBanner.classList.remove("show");
+    });
+  }
 });
