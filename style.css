@@ -355,9 +355,8 @@ h1, h2, h3, h4 {
 /* Ensure container enforces a square shape and border (fixes PNG transparency masks) */
 .profile-container {
   overflow: hidden;
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  border-radius: 12px;
   border: 2px solid rgba(20, 184, 166, 0.4);
-  animation: morph 8s ease-in-out infinite;
 }
 
 /* Responsive adjustments */
@@ -376,14 +375,13 @@ h1, h2, h3, h4 {
     aspect-ratio: 1/1; 
     height: auto;
     margin: 0 auto;
-    border-radius: 51% 49% 48% 52% / 62% 44% 56% 38%; /* Subtle organic shape */
-    animation: morph 6s ease-in-out infinite;
+    border-radius: 20px;
   }
   .hero-profile-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: inherit; /* Follows the organic shape */
+    border-radius: 12px;
   }
 }
 
