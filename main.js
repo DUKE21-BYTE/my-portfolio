@@ -111,10 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Contact Form — WhatsApp Submission
+  // Contact Form — Formspree API Submission
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const name    = document.getElementById("name").value.trim();
@@ -123,20 +123,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!name || !email || !message) return;
 
-      const text = `Hello Dennis! 👋\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
-      const url  = `https://wa.me/254758596269?text=${encodeURIComponent(text)}`;
-
       const submitBtn = contactForm.querySelector("button[type='submit']");
       const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Opening WhatsApp...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
       submitBtn.disabled = true;
 
+      try {
+        const response = await fetch("https://formspree.io/f/xkovednn", {
+          method: "POST",
+          headers: {
+            "Accept": "application/json"
+          },
+          body: new FormData(contactForm)
+        });
+
+        if (response.ok) {
+          submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Sent successfully!';
+          submitBtn.style.backgroundColor = "#10b981"; // success green
+          contactForm.reset();
+        } else {
+          submitBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Oops! Error.';
+          submitBtn.style.backgroundColor = "#ef4444"; // error red
+        }
+      } catch (error) {
+        submitBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Oops! Error.';
+        submitBtn.style.backgroundColor = "#ef4444";
+      }
+
       setTimeout(() => {
-        window.open(url, "_blank", "noopener,noreferrer");
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        contactForm.reset();
-      }, 600);
+        submitBtn.style.backgroundColor = "";
+      }, 4000);
     });
   }
 });
