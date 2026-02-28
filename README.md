@@ -23,7 +23,7 @@ A premium, high-performance portfolio website built with HTML, CSS, and JavaScri
 
 - **Images**: Replace the placeholder project gradients with actual screenshots in the `img` folder (you'll need to create one if you have images).
 - **Links**: Update the `href="#"` links in `index.html` to point to your real GitHub repos and live demos.
-- **Email**: Update `fundidennis@example.com` in `index.html` to your actual email.
+- **Email**: Email is already set to `dennis133@gmail.com` in `index.html`.
 
 ## Deploying
 

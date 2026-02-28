@@ -139,6 +139,16 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+.nav-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    background: none;
+    border: none;
+    padding: 0.2rem;
+}
+
 .nav-menu {
   list-style: none;
   margin: 0;
@@ -428,11 +438,7 @@ h1, h2, h3, h4 {
 }
 
 
-@keyframes morph {
-    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-}
+/* @keyframes morph removed — unused animation */
 
 @keyframes float {
     0% { transform: translateY(0); }
@@ -489,7 +495,7 @@ h1, h2, h3, h4 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
     color: var(--accent-primary);
-    background: rgba(59, 130, 246, 0.1);
+    background: var(--accent-glow);
     width: 80px;
     height: 80px;
     display: flex;
@@ -742,7 +748,7 @@ h1, h2, h3, h4 {
 .lab-icon {
   width: 50px;
   height: 50px;
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--accent-glow);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -930,7 +936,7 @@ h1, h2, h3, h4 {
   .hero-profile-img {
     width: 100%;
     height: auto;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    border-radius: 12px;
   }
   .contact-wrapper {
     grid-template-columns: 1fr;
